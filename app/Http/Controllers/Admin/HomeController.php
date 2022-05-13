@@ -20,7 +20,7 @@ class HomeController
             'filter_days'           => '30',
             'group_by_field_format' => 'Y-m-d H:i:s',
             'column_class'          => 'col-md-6',
-            'entries_number'        => '10',
+            'entries_number'        => '5',
             'fields'                => [
                 'name'       => '',
                 'email'      => '',
