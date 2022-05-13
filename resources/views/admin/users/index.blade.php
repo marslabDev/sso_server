@@ -40,9 +40,6 @@
                         {{ trans('cruds.user.fields.verified') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.two_factor') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.user.fields.roles') }}
                     </th>
                     <th>
@@ -63,8 +60,6 @@
                     </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
                     </td>
                     <td>
                     </td>
@@ -139,7 +134,6 @@
 { data: 'email_verified_at', name: 'email_verified_at' },
 { data: 'approved', name: 'approved' },
 { data: 'verified', name: 'verified' },
-{ data: 'two_factor', name: 'two_factor' },
 { data: 'roles', name: 'roles.title' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
