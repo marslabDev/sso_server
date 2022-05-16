@@ -57,6 +57,9 @@ class UsersController extends Controller
             $table->editColumn('verified', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->verified ? 'checked' : null) . '>';
             });
+            $table->editColumn('two_factor', function ($row) {
+                return '<input type="checkbox" disabled ' . ($row->two_factor ? 'checked' : null) . '>';
+            });
             $table->editColumn('roles', function ($row) {
                 $labels = [];
                 foreach ($row->roles as $role) {
@@ -66,7 +69,7 @@ class UsersController extends Controller
                 return implode(' ', $labels);
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'approved', 'verified', 'roles']);
+            $table->rawColumns(['actions', 'placeholder', 'approved', 'verified', 'two_factor', 'roles']);
 
             return $table->make(true);
         }
@@ -116,7 +119,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $user->load('roles');
+        $user->load('roles', 'userUserAlerts');
 
         return view('admin.users.show', compact('user'));
     }
