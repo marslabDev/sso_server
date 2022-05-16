@@ -19,7 +19,7 @@ class UserAlertsController extends Controller
         abort_if(Gate::denies('user_alert_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = UserAlert::with(['users'])->select(sprintf('%s.*', (new UserAlert())->table));
+            $query = UserAlert::with(['users', 'created_by'])->select(sprintf('%s.*', (new UserAlert())->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -63,7 +63,9 @@ class UserAlertsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.userAlerts.index');
+        $users = User::get();
+
+        return view('admin.userAlerts.index', compact('users'));
     }
 
     public function create()
@@ -87,7 +89,7 @@ class UserAlertsController extends Controller
     {
         abort_if(Gate::denies('user_alert_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $userAlert->load('users');
+        $userAlert->load('users', 'created_by');
 
         return view('admin.userAlerts.show', compact('userAlert'));
     }
