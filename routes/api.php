@@ -9,7 +9,4 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Users
     Route::apiResource('users', 'UsersApiController');
-
-    // User Alerts
-    Route::apiResource('user-alerts', 'UserAlertsApiController', ['except' => ['update']]);
 });
